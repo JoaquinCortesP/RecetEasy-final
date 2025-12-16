@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import cl.duoc.receteasy.ui.navegacion.Rutas
@@ -20,7 +21,15 @@ import cl.duoc.receteasy.viewmodel.RecetarioViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
+
 fun PantallaCrearReceta(navController: NavController, viewModel: RecetarioViewModel) {
+
+    val textFieldColors = TextFieldDefaults.colors(
+        focusedTextColor = Color.Black,
+        cursorColor = Color.Black
+    )
+
     val estado by viewModel.estadoUI.collectAsState()
 
     var titulo by rememberSaveable { mutableStateOf("") }
@@ -68,7 +77,8 @@ fun PantallaCrearReceta(navController: NavController, viewModel: RecetarioViewMo
             onValueChange = { titulo = it },
             label = { Text("Título*") },
             singleLine = true,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            colors = textFieldColors
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -76,7 +86,8 @@ fun PantallaCrearReceta(navController: NavController, viewModel: RecetarioViewMo
             value = descripcion,
             onValueChange = { descripcion = it },
             label = { Text("Descripción") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            colors = textFieldColors
         )
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -94,7 +105,8 @@ fun PantallaCrearReceta(navController: NavController, viewModel: RecetarioViewMo
                     .menuAnchor()
                     .fillMaxWidth(),
                 readOnly = true,
-                label = { Text("Selecciona categoría") }
+                label = { Text("Selecciona categoría") },
+                colors = textFieldColors
             )
 
             DropdownMenu(
@@ -122,7 +134,8 @@ fun PantallaCrearReceta(navController: NavController, viewModel: RecetarioViewMo
             value = nombreIng,
             onValueChange = { nombreIng = it },
             label = { Text("Nombre ingrediente*") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            colors = textFieldColors
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -132,7 +145,8 @@ fun PantallaCrearReceta(navController: NavController, viewModel: RecetarioViewMo
                 onValueChange = { cantidadIng = it },
                 label = { Text("Cantidad*") },
                 singleLine = true,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                colors = textFieldColors
             )
 
             Spacer(modifier = Modifier.width(8.dp))
@@ -149,7 +163,8 @@ fun PantallaCrearReceta(navController: NavController, viewModel: RecetarioViewMo
                     readOnly = true,
                     modifier = Modifier
                         .menuAnchor()
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
+                    colors = textFieldColors
                 )
 
                 DropdownMenu(
@@ -217,7 +232,8 @@ fun PantallaCrearReceta(navController: NavController, viewModel: RecetarioViewMo
             },
             label = { Text("Pasos*") },
             isError = pasosError,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            colors = textFieldColors
         )
 
         if (pasosError) {

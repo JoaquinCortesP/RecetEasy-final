@@ -74,7 +74,7 @@ fun PantallaInicio(
                             rememberAsyncImagePainter(Uri.parse(usuario!!.fotoUri!!))
                         }
 
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = { navController.navigate(Rutas.PERFIL) }) {
                         Image(
                             painter = avatarPainter,
                             contentDescription = "Foto usuario",

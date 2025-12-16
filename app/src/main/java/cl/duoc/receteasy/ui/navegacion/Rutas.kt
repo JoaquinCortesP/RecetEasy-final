@@ -10,4 +10,6 @@ object Rutas {
     const val DETALLE_BASE = "detalle"
     const val CAMARA = "camara"
     const val INGREDIENTES_XANO = "ingredientes_xano"
+    const val PERFIL = "perfil"
 }
+

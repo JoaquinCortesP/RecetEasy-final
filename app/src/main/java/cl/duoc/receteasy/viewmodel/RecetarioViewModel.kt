@@ -176,11 +176,18 @@ class RecetarioViewModel(private val repositorio: RecetaRepository) : ViewModel(
                     imagenUri = receta.imagenUri,
                     creador = receta.creador
                 )
-                RetrofitInstance.api.crearRecetaXano(request)
-            } catch (_: Exception) {
+
+                val response = RetrofitInstance.api.crearRecetaXano(request)
+
+                if (!response.isSuccessful) {
+                    setError("Error Xano receta: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                setError("Error Xano receta: ${e.message}")
             }
         }
     }
+
 
     private fun enviarIngredienteAXano(ingrediente: Ingrediente) {
         viewModelScope.launch {
@@ -189,7 +196,8 @@ class RecetarioViewModel(private val repositorio: RecetaRepository) : ViewModel(
                     nombre = ingrediente.nombre
                 )
                 RetrofitInstance.api.crearIngredienteXano(request)
-            } catch (_: Exception) {
+            } catch (e: Exception) {
+                setError("Error al enviar ingrediente a Xano: ${e.message}")
             }
         }
     }

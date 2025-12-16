@@ -5,12 +5,20 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import cl.duoc.receteasy.viewmodel.UsuarioViewModel
 
+
 @Composable
 fun PantallaLogin(navController: NavController, usuarioViewModel: UsuarioViewModel) {
+
+    val textFieldColors = OutlinedTextFieldDefaults.colors(
+        focusedTextColor = Color.Black,
+        unfocusedTextColor = Color.Black,
+        cursorColor = Color.Black
+    )
 
     var nombre by remember { mutableStateOf("") }
     var contrasena by remember { mutableStateOf("") }
@@ -30,7 +38,8 @@ fun PantallaLogin(navController: NavController, usuarioViewModel: UsuarioViewMod
             value = nombre,
             onValueChange = { nombre = it },
             label = { Text("Nombre de usuario") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            colors = textFieldColors
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -39,7 +48,8 @@ fun PantallaLogin(navController: NavController, usuarioViewModel: UsuarioViewMod
             value = contrasena,
             onValueChange = { contrasena = it },
             label = { Text("Contraseña") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            colors = textFieldColors
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -64,5 +74,6 @@ fun PantallaLogin(navController: NavController, usuarioViewModel: UsuarioViewMod
         Text(text = mensaje, color = MaterialTheme.colorScheme.primary)
     }
 }
+
 
 

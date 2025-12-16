@@ -58,5 +58,12 @@ fun NavGraph(
         composable(Rutas.INGREDIENTES_XANO) {
             PantallaListaIngredientesRemotos(navController = navController)
         }
+        composable(Rutas.PERFIL) {
+            PantallaPerfilUsuario(
+                navController = navController,
+                usuarioViewModel = usuarioViewModel
+            )
+        }
+
     }
 }

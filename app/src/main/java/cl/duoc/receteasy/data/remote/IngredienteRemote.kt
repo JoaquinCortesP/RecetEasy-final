@@ -7,5 +7,5 @@ data class IngredienteRemote(
     @SerializedName("name")
     val nombre: String,
     @SerializedName("created_at")
-    val createdAt: Long
+    val createdAt: Any?
 )

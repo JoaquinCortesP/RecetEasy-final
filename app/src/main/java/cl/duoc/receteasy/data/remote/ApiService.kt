@@ -11,6 +11,6 @@ interface ApiService {
     @POST("ingrediente")
     suspend fun crearIngredienteXano(@Body ingrediente: IngredienteXanoRequest)
     @POST("receta")
-    suspend fun crearRecetaXano(@Body receta: RecetaXanoRequest)
+    suspend fun crearRecetaXano(@Body receta: RecetaXanoRequest): retrofit2.Response<Unit>
 }
 
